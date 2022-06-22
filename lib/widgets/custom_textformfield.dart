@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  TextEditingController? controller;
   Widget? prefixIcon;
   Widget? suffixIcon;
   bool obscureText;
@@ -23,7 +24,7 @@ class CustomTextFormField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: TextField(
-          obscureText: obscureText,
+          controller: controller,
           obscuringCharacter: "*",
           decoration: InputDecoration(
             hintText: hintText,

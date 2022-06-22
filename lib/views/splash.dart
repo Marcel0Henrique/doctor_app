@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:doctor_app/views/login_view.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
@@ -24,17 +25,24 @@ class _SplashFuturePageState extends State<SplashFuturePage> {
     return EasySplashScreen(
       loaderColor: Colors.white,
       logo: Image.network(
+          color: Colors.white,
           'https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/flutter-512.png'),
       title: Text(
-        "Doctor App",
+        "Doutor App",
         style: TextStyle(
-          fontSize: 18,
+          fontSize: MediaQuery.of(context).size.width * 0.08,
           fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
       ),
       backgroundColor: Colors.blue,
       showLoader: true,
-      loadingText: Text("Carregando..."),
+      loadingText: Text(
+        "Carregando...",
+        style: TextStyle(
+            fontSize: MediaQuery.of(context).size.width * 0.05,
+            color: Colors.white),
+      ),
       futureNavigator: futureCall(),
     );
   }
