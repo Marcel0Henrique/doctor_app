@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
   String? hintText;
   CustomTextFormField(
       {Key? key,
+      this.controller,
       this.prefixIcon,
       this.suffixIcon,
       this.obscureText = false,

@@ -5,17 +5,19 @@ import 'package:doctor_app/views/login_view.dart';
 import 'package:doctor_app/views/recuperar_senha_view.dart';
 import 'package:doctor_app/views/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
 
-  final keyApplicationId = 'YOUR_APP_ID_HERE';
-  final keyClientKey = 'YOUR_CLIENT_KEY_HERE';
-  final keyParseServerUrl = 'https://parseapi.back4app.com';
+  final keyApplicationId = dotenv.env['keyApplicationId'];
+  final keyClientKey = dotenv.env['keyClientKey'];
+  final keyParseServerUrl = dotenv.env['keyParseServerUrl'];
 
-  await Parse().initialize(keyApplicationId, keyParseServerUrl,
+  await Parse().initialize(keyApplicationId!, keyParseServerUrl!,
       clientKey: keyClientKey, debug: true);
   runApp(
     MultiProvider(
@@ -28,7 +30,7 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => CadastroController(),
           child: CadastroView(),
-        )
+        ),
       ],
     ),
   );

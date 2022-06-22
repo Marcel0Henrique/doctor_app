@@ -1,3 +1,4 @@
+import 'package:doctor_app/controllers/cadastro_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,15 +48,25 @@ class CadastroView extends StatelessWidget {
                     shrinkWrap: true,
                     children: [
                       CustomTextFormField(
-                          prefixIcon: Icon(Icons.person), hintText: "Usuario"),
+                          controller: (context).select(
+                              (CadastroController _controller) =>
+                                  _controller.usuarioControlle),
+                          prefixIcon: Icon(Icons.person),
+                          hintText: "Usuario"),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: CustomTextFormField(
+                          controller: (context).select(
+                              (CadastroController _controller) =>
+                                  _controller.emailController),
                           prefixIcon: Icon(Icons.email),
                           hintText: "Email",
                         ),
                       ),
                       CustomTextFormField(
+                        controller: (context).select(
+                            (CadastroController _controller) =>
+                                _controller.senhaController),
                         prefixIcon: Icon(Icons.lock),
                         hintText: "Senha",
                       ),
@@ -67,13 +78,19 @@ class CadastroView extends StatelessWidget {
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.08,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Cadastrar",
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.043),
+                          child: Consumer<CadastroController>(
+                            builder: (context, _controller, child) =>
+                                ElevatedButton(
+                              onPressed: () async {
+                                _controller.cadastrar(context);
+                              },
+                              child: Text(
+                                "Cadastrar",
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.043),
+                              ),
                             ),
                           ),
                         ),
