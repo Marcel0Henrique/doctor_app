@@ -19,7 +19,7 @@ class CadastroView extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: MediaQuery.of(context).size.width * 0.17,
+              fontSize: MediaQuery.of(context).size.width * 0.15,
             ),
           ),
           Text(

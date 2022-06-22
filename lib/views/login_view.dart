@@ -14,11 +14,11 @@ class LoginView extends StatelessWidget {
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           Text(
-            "Login",
+            "Doutor App",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: MediaQuery.of(context).size.width * 0.17,
+              fontSize: MediaQuery.of(context).size.width * 0.15,
             ),
           ),
           Text(
