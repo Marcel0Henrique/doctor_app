@@ -46,6 +46,7 @@ class LoginView extends StatelessWidget {
                     shrinkWrap: true,
                     children: [
                       CustomTextFormField(
+                        hintText: "Email",
                         prefixIcon: Icon(Icons.email),
                       ),
                       SizedBox(
@@ -53,6 +54,7 @@ class LoginView extends StatelessWidget {
                       Consumer<LoginController>(
                         builder: (context, _loginController, child) =>
                             CustomTextFormField(
+                          hintText: "Senha",
                           obscureText: _loginController.obscureText,
                           prefixIcon: Icon(Icons.lock),
                           suffixIcon: IconButton(
@@ -63,7 +65,8 @@ class LoginView extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () =>
+                              Navigator.pushNamed(context, "recuperarSenha"),
                           child: Text(
                             "Esqueci minha senha",
                             style: TextStyle(

@@ -46,12 +46,19 @@ class CadastroView extends StatelessWidget {
                   child: ListView(
                     shrinkWrap: true,
                     children: [
-                      CustomTextFormField(),
+                      CustomTextFormField(
+                          prefixIcon: Icon(Icons.person), hintText: "Usuario"),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: CustomTextFormField(),
+                        child: CustomTextFormField(
+                          prefixIcon: Icon(Icons.email),
+                          hintText: "Email",
+                        ),
                       ),
-                      CustomTextFormField(),
+                      CustomTextFormField(
+                        prefixIcon: Icon(Icons.lock),
+                        hintText: "Senha",
+                      ),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03),
                       Padding(

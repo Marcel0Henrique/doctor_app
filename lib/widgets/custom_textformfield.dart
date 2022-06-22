@@ -4,8 +4,13 @@ class CustomTextFormField extends StatelessWidget {
   Widget? prefixIcon;
   Widget? suffixIcon;
   bool obscureText;
+  String? hintText;
   CustomTextFormField(
-      {Key? key, this.prefixIcon, this.suffixIcon, this.obscureText = false})
+      {Key? key,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.obscureText = false,
+      this.hintText})
       : super(key: key);
 
   @override
@@ -21,6 +26,7 @@ class CustomTextFormField extends StatelessWidget {
           obscureText: obscureText,
           obscuringCharacter: "*",
           decoration: InputDecoration(
+            hintText: hintText,
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             border: InputBorder.none,
