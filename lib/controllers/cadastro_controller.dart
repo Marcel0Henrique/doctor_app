@@ -21,11 +21,10 @@ class CadastroController with ChangeNotifier {
 
     if (_registro.sucesso!) {
       cadastroSucesso(context);
-      _usuarioController.clear();
-      _emailController.clear();
-      _senhaController.clear();
+      limparCampos();
     } else {
       cadastroFalha(context, _registro.mensagemErro!);
+      limparCampos();
     }
   }
 
@@ -46,22 +45,28 @@ class CadastroController with ChangeNotifier {
       },
     );
   }
-}
 
-cadastroFalha(context, String erro) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Ops.."),
-        content: Text(erro),
-        actions: [
-          ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text("Ok"),
-          )
-        ],
-      );
-    },
-  );
+  cadastroFalha(context, String erro) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Ops.."),
+          content: Text(erro),
+          actions: [
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("Ok"),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  limparCampos() {
+    _usuarioController.clear();
+    _emailController.clear();
+    _senhaController.clear();
+  }
 }

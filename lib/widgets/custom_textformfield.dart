@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  FormFieldValidator<String>? validator;
   TextEditingController? controller;
   Widget? prefixIcon;
   Widget? suffixIcon;
@@ -8,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   String? hintText;
   CustomTextFormField(
       {Key? key,
+      this.validator,
       this.controller,
       this.prefixIcon,
       this.suffixIcon,
@@ -19,12 +21,13 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.lightBlue[50],
+        color: Color.fromARGB(255, 225, 245, 254),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: TextField(
+        child: TextFormField(
+          validator: validator,
           controller: controller,
           obscuringCharacter: "*",
           decoration: InputDecoration(

@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import '../widgets/custom_textformfield.dart';
 
 class CadastroView extends StatelessWidget {
-  const CadastroView({Key? key}) : super(key: key);
+  final formkey = GlobalKey<FormState>();
+  CadastroView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,58 +45,80 @@ class CadastroView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.08),
                 child: Center(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      CustomTextFormField(
+                  child: Form(
+                    key: formkey,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        CustomTextFormField(
                           controller: (context).select(
                               (CadastroController _controller) =>
                                   _controller.usuarioControlle),
                           prefixIcon: Icon(Icons.person),
-                          hintText: "Usuario"),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: CustomTextFormField(
+                          hintText: "Usuario",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Favor preenche o campo";
+                            }
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: CustomTextFormField(
+                            controller: (context).select(
+                                (CadastroController _controller) =>
+                                    _controller.emailController),
+                            prefixIcon: Icon(Icons.email),
+                            hintText: "Email",
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Favor preenche o campo";
+                              }
+                            },
+                          ),
+                        ),
+                        CustomTextFormField(
                           controller: (context).select(
                               (CadastroController _controller) =>
-                                  _controller.emailController),
-                          prefixIcon: Icon(Icons.email),
-                          hintText: "Email",
+                                  _controller.senhaController),
+                          prefixIcon: Icon(Icons.lock),
+                          hintText: "Senha",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Favor preenche o campo";
+                            }
+                          },
                         ),
-                      ),
-                      CustomTextFormField(
-                        controller: (context).select(
-                            (CadastroController _controller) =>
-                                _controller.senhaController),
-                        prefixIcon: Icon(Icons.lock),
-                        hintText: "Senha",
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.03),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: MediaQuery.of(context).size.width * 0.06),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.08,
-                          child: Consumer<CadastroController>(
-                            builder: (context, _controller, child) =>
-                                ElevatedButton(
-                              onPressed: () async {
-                                _controller.cadastrar(context);
-                              },
-                              child: Text(
-                                "Cadastrar",
-                                style: TextStyle(
-                                    fontSize:
-                                        MediaQuery.of(context).size.height *
-                                            0.043),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.03),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical:
+                                  MediaQuery.of(context).size.width * 0.06),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.08,
+                            child: Consumer<CadastroController>(
+                              builder: (context, _controller, child) =>
+                                  ElevatedButton(
+                                onPressed: () async {
+                                  if (formkey.currentState!.validate()) {
+                                    _controller.cadastrar(context);
+                                  }
+                                },
+                                child: Text(
+                                  "Cadastrar",
+                                  style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.height *
+                                              0.043),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
